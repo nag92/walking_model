@@ -44,7 +44,7 @@ def euler_lagrange(subject):
         for j in xrange(5):
 
 
-            a_j = int(not (i == 2))
+            a_j = int(not (j == 2))
 
             if i == j:
                 m = sum(masses[i+1:])
@@ -104,3 +104,28 @@ def impact(sub):
     :param sub:
     :return:
     """
+    m, I, l, d = sub.get_params()
+    q = sub._q
+    qd = sub._qd
+    W = np.zeros(shape=(5, 5))
+
+    j = jacobian(sub)
+    j_T = j.transpose()
+
+    for i in xrange(5):
+        a_i = int(not (i == 2))
+        for j in xrange(5):
+            a_j = int(not (j == 2))
+            if j == i:
+                W[i][j] = I[i] - m[i] * d * ( a_i *  l[i] - d[i] )
+            elif j < i:
+                W[i][j] = (a_i * m[j] * d[j] *l[i] + a_j * m[i] * l[j] ( a_i *l[i] - d[i] ) \
+                          + a_i*a_j*l[i]*l[j]*sum(m[j+1:]))*np.cos(q[i] - q[j])
+            else:
+                W[i][j] = 0
+
+
+
+
+
+
