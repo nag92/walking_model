@@ -7,6 +7,7 @@ import subject
 
 
 def getM():
+
     M1 =  [ (- 2*l_2**2*m_2 - 6*l_1**2*m_2*cos(q1)**2 - 24*l_1**2*m_3*cos(q1)**2 - 24*l_1**2*m_4*cos(q1)**2 - \
                        24*l_1**2*m_5*cos(q1)**2 - 24*l_1**2*m_6*cos(q1)**2 - 24*l_1**2*m_7*cos(q1)**2 - \
                        6*l_1**2*m_2*sin(q1)**2 - 24*l_1**2*m_3*sin(q1)**2 - 24*l_1**2*m_4*sin(q1)**2 - \
@@ -56,7 +57,7 @@ def getM():
                       24 * l_2 * l_3 * m_6 * sin(q2) * sin(q3)), \
                      (12 * l_2 * l_4 * m_5 * cos(q2) * cos(q4) + 24 * l_2 * l_4 * m_6 * cos(q2) * cos(q4) + \
                       12 * l_2 * l_4 * m_5 * sin(q2) * sin(q4) + 24 * l_2 * l_4 * m_6 * sin(q2) * sin(q4)),\
-                   (- 12 * l_2 * l_5 * m_7 * cos(q2) * cos(q5) - 12 * l_2 * l_5 * m_7 * sin(q2) * sin(q5))]
+                   (- 12 * l_2 * l_5 * m_7 * cos(q2) * cos(q5) - 12 * l_2 * l_5 * m_7 * sin(q2) * sin(q5)),0]
 
     M3 = [ (12 * l_1 * l_3 * m_4 * cos(q1) * cos(q3) + 24 * l_1 * l_3 * m_5 * cos(q1) * cos(q3) + \
                       24 * l_1 * l_3 * m_6 * cos(q1) * cos(q3) + 12 * l_1 * l_3 * m_4 * sin(q1) * sin(q3) + \
@@ -75,26 +76,29 @@ def getM():
 
 
     M4 = [(12 * l_1 * l_4 * m_5 * cos(q1) * cos(q4) + 24 * l_1 * l_4 * m_6 * cos(q1) * cos(q4) + \
-                     12 * l_1 * l_4 * m_5 * sin(q1) * sin(q4) + 24 * l_1 * l_4 * m_6 * sin(q1) * sin(q4)), \
-                    (12 * l_2 * l_4 * m_5 * cos(q2) * cos(q4) + 24 * l_2 * l_4 * m_6 * cos(q2) * cos(q4) + \
-                     12 * l_2 * l_4 * m_5 * sin(q2) * sin(q4) + 24 * l_2 * l_4 * m_6 * sin(q2) * sin(q4)) ,\
-                  (- 12 * l_3 * l_4 * m_5 * cos(q3) * cos(q4) - 24 * l_3 * l_4 * m_6 * cos(q3) * cos(q4) - \
-                     12 * l_3 * l_4 * m_5 * sin(q3) * sin(q4) - 24 * l_3 * l_4 * m_6 * sin(q3) * sin(q4)),
-                   (- 2 * l_5 ** 2 * m_5 - 6 * l_4 ** 2 * m_5 * cos(q4) ** 2 - 24 * l_4 ** 2 * m_6 * cos(q4) ** 2 - \
-                      6 * l_4 ** 2 * m_5 * sin(q4) ** 2 - 24 * l_4 ** 2 * m_6 * sin(q4) ** 2), \
-                    0, 0]
+           12 * l_1 * l_4 * m_5 * sin(q1) * sin(q4) + 24 * l_1 * l_4 * m_6 * sin(q1) * sin(q4)), \
+          (12 * l_2 * l_4 * m_5 * cos(q2) * cos(q4) + 24 * l_2 * l_4 * m_6 * cos(q2) * cos(q4) + \
+           12 * l_2 * l_4 * m_5 * sin(q2) * sin(q4) + 24 * l_2 * l_4 * m_6 * sin(q2) * sin(q4)) ,\
+        (- 12 * l_3 * l_4 * m_5 * cos(q3) * cos(q4) - 24 * l_3 * l_4 * m_6 * cos(q3) * cos(q4) - \
+           12 * l_3 * l_4 * m_5 * sin(q3) * sin(q4) - 24 * l_3 * l_4 * m_6 * sin(q3) * sin(q4)),
+         (- 2 * l_5 ** 2 * m_5 - 6 * l_4 ** 2 * m_5 * cos(q4) ** 2 - 24 * l_4 ** 2 * m_6 * cos(q4) ** 2 - \
+            6 * l_4 ** 2 * m_5 * sin(q4) ** 2 - 24 * l_4 ** 2 * m_6 * sin(q4) ** 2), \
+            0,\
+            0]
 
-    M5 = [ (- 12 * l_1 * l_5 * m_7 * cos(q1) * cos(q5) - \
-                        12 * l_1 * l_5 * m_7 * sin(q1) * sin(q5)) , \
-                     (-  12 * l_2 * l_5 * m_7 * cos(q2) * cos(q5) - \
-                      12 * l_2 * l_5 * m_7 * sin(q2) * sin(q5)),
-                     0,\
-                     0,\
-                     (- 6 * m_7 * l_5 ** 2 * cos(q5) ** 2 - 6 * m_7 * l_5 ** 2 * sin(q5) ** 2 - 2 * m_6 * l_6 ** 2) , \
-                     0]
 
-    M6 = [0,0,0,0,0,0,(-2*l_7**2 * m_7)]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     (-2*l_7**2*m_7)*qdd6
+    M5 = [(- 12*l_1*l_5*m_7*cos(q1)*cos(q5) - 12*l_1*l_5*m_7*sin(q1)*sin(q5)),\
+         (- 12*l_2*l_5*m_7*cos(q2)*cos(q5) - 12*l_2*l_5*m_7*sin(q2)*sin(q5)),\
+         0,
+         0,
+         (- 6*m_7*l_5**2*cos(q5)**2 - 6*m_7*l_5**2*sin(q5)**2 - 2*m_6*l_6**2),
+         0]
 
+
+    M6 = [0,0,0,0,0,(-2*l_7**2*m_7)]
+
+    M = np.matrix([M1,M2,M3,M4,M5,M6])
+    return M
 
 # def getM(subject):
 #
@@ -227,6 +231,8 @@ def getC():
 
     C6 = 0
 
+    C = np.matrix([C1, C2, C3, C4, C5, C6])
+    return C
 
 def getG():
     G1 =  10 * l_1 * cos(q1) + 10 * l_1 * sin(q1)
@@ -235,13 +241,8 @@ def getG():
     G4 = - 2 * l_4 * cos(q4) - 2 * l_4 * sin(q4)
     G5 = 2 * l_5 * cos(q5) + 2 * l_5 * sin(q5)
     G6 = 0
-
-
-
-
-
-
-
+    G = np.matrix([G1, G2, G3, G4, G5, G6])
+    return G
 
 
 
