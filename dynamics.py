@@ -6,7 +6,27 @@ import subject
 
 
 
-def getM():
+def getTau(sub, q,qd,qdd,):
+
+
+
+def getM(sub):
+
+    lengths = sub._link_lengths
+    masses = sub._link_masses
+    l_1 = lengths[0]
+    l_2 = lengths[1]
+    l_3 = lengths[2]
+    l_4 = lengths[3]
+    l_5 = lengths[4]
+    l_6 = lengths[5]
+    l_7 = lengths[6]
+    m_1 = masses[0]
+    m_2 = masses[1]
+    m_3 = masses[2]
+    m_4 = masses[3]
+    m_5 = masses[4]
+    m_6 = masses[5]
 
     M1 =  [ (- 2*l_2**2*m_2 - 6*l_1**2*m_2*cos(q1)**2 - 24*l_1**2*m_3*cos(q1)**2 - 24*l_1**2*m_4*cos(q1)**2 - \
                        24*l_1**2*m_5*cos(q1)**2 - 24*l_1**2*m_6*cos(q1)**2 - 24*l_1**2*m_7*cos(q1)**2 - \
@@ -176,7 +196,24 @@ def getM():
 #     M6 = -2 * l_7 ** 2 * m_7 * qdd6
 
 
-def getC():
+def getC(sub):
+
+    lengths = sub._link_lengths
+    masses = sub._link_masses
+    l_1 = lengths[0]
+    l_2 = lengths[1]
+    l_3 = lengths[2]
+    l_4 = lengths[3]
+    l_5 = lengths[4]
+    l_6 = lengths[5]
+    l_7 = lengths[6]
+    m_1 = masses[0]
+    m_2 = masses[1]
+    m_3 = masses[2]
+    m_4 = masses[3]
+    m_5 = masses[4]
+    m_6 = masses[5]
+    m_7 = masses[6]
 
     C1 = \
         12 * l_1 * l_2 * m_3 * qd2 ** 2 * cos(q1) * sin(q2) - 12 * l_1 * l_2 * m_3 * qd2 ** 2 * cos(q2) * sin(q1) + \
@@ -234,7 +271,24 @@ def getC():
     C = np.matrix([C1, C2, C3, C4, C5, C6])
     return C
 
-def getG():
+def getG(sub):
+
+    lengths = sub._link_lengths
+    masses = sub._link_masses
+    l_1 = lengths[0]
+    l_2 = lengths[1]
+    l_3 = lengths[2]
+    l_4 = lengths[3]
+    l_5 = lengths[4]
+    l_6 = lengths[5]
+    l_7 = lengths[6]
+    m_1 = masses[0]
+    m_2 = masses[1]
+    m_3 = masses[2]
+    m_4 = masses[3]
+    m_5 = masses[4]
+    m_6 = masses[5]
+
     G1 =  10 * l_1 * cos(q1) + 10 * l_1 * sin(q1)
     G2 =  8 * l_2 * cos(q2) + 8 * l_2 * sin(q2)
     G3 = -4 * l_3 * cos(q3) - 4 * l_3 * sin(q3)
