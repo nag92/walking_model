@@ -2,7 +2,7 @@
 
 import numpy as np
 from math import cos, sin
-import subject
+import Subject
 
 
 
@@ -279,6 +279,33 @@ def getG(sub):
     G6 = 0
     G = np.matrix([G1, G2, G3, G4, G5, G6])
     return G
+
+
+
+def FK(sub):
+
+    q = sub.q
+    l = sub._link_lengths
+    P = []
+    P.append(np.matrix([ [0], [0] ]))
+    Q = []
+
+    for i in xrange(1,6):
+        print i
+        temp = []
+        R = np.matrix([ [cos(q[i - 1]), -sin(q[i - 1])], [ sin(q[i - 1]), cos(q[i - 1] ) ] ] )
+
+        if i == 1 or i == 2:
+            temp = P[i - 1] + R * np.matrix( [ [0], [ 2 * l[i - 1] ]])
+        elif i == 4 or i == 3:
+            temp = P[ i - 1] + R * np.matrix( [ [0], [ -2 * l[i - 1] ]])
+        elif i == 5:
+            temp = P[2] + R * np.matrix( [ [0], [ 2 * l[i - 1] ]])
+
+        P.append(temp)
+        print P
+    return P
+
 
 
 
