@@ -23,19 +23,11 @@ class Plotter():
 
     def update(self, sub):
         points = dynamics.FK(sub)
-        back = [ _.tolist() for _ in points[:3]]
+        back = [ _.tolist() for _ in points[:-1]]
         flat_back = [item for sublist in back for item in sublist]
-        front = [_.tolist() for _ in points[3:]]
-        flat_front = [item for sublist in front for item in sublist]
-        print flat_front
-        self.back_leg.set_ydata([ flat_back[1], flat_back[3], flat_back[5] ])
-        self.back_leg.set_xdata([ flat_back[0], flat_back[2], flat_back[4] ])
 
-        self.front_leg.set_ydata([flat_back[5],flat_front[1], flat_front[3]])
-        self.front_leg.set_xdata([flat_back[4],flat_front[0], flat_front[2]])
-
-        self.trunk.set_ydata([flat_back[5], flat_front[5]])
-        self.trunk.set_xdata([flat_back[4], flat_front[4]])
+        self.back_leg.set_ydata([ flat_back[1], flat_back[3], flat_back[5], flat_back[7], flat_back[9] ])
+        self.back_leg.set_xdata([ flat_back[0], flat_back[2], flat_back[4], flat_back[6],flat_back[8] ])
 
         self.fig.canvas.draw()
         self.fig.canvas.flush_events()

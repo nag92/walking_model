@@ -89,5 +89,5 @@ def animate(i):
 ani = animation.FuncAnimation(fig, animate, np.arange(1, steps),
                               interval=steps, blit=True, init_func=init)
 
-#ani.save('double_pendulum.mp4', fps=15)
+
 plt.show()

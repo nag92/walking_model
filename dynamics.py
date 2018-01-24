@@ -282,16 +282,16 @@ def getG(sub):
 
 
 
-def FK(sub):
+def FK(sub,fixed = np.array([[0],[0]]) ):
 
     q = sub.q
     l = sub._link_lengths
     P = []
-    P.append(np.matrix([ [0], [0] ]))
+    P.append(fixed)
     Q = []
 
     for i in xrange(1,6):
-        print i
+
         temp = []
         R = np.matrix([ [cos(q[i - 1]), -sin(q[i - 1])], [ sin(q[i - 1]), cos(q[i - 1] ) ] ] )
 
@@ -301,9 +301,10 @@ def FK(sub):
             temp = P[ i - 1] + R * np.matrix( [ [0], [ -2 * l[i - 1] ]])
         elif i == 5:
             temp = P[2] + R * np.matrix( [ [0], [ 2 * l[i - 1] ]])
-
         P.append(temp)
-        print P
+
+
+
     return P
 
 
