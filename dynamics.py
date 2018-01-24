@@ -282,12 +282,12 @@ def getG(sub):
 
 
 
-def FK(sub,fixed = np.array([[0],[0]]) ):
+def FK(sub):
 
     q = sub.q
     l = sub._link_lengths
     P = []
-    P.append(fixed)
+    P.append(sub.fixed)
     Q = []
 
     for i in xrange(1,6):
@@ -302,8 +302,6 @@ def FK(sub,fixed = np.array([[0],[0]]) ):
         elif i == 5:
             temp = P[2] + R * np.matrix( [ [0], [ 2 * l[i - 1] ]])
         P.append(temp)
-
-
 
     return P
 

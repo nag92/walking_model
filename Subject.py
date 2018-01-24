@@ -18,37 +18,70 @@ class Subject():
         self.tau = np.array([0,0,0,0,0,0],dtype=float)
 
         self.joints = []
-        self.fixed = np.array([[0],[0]])
-        self.phase = 0
+        self.fixed = np.matrix([[0],[0]])
+        self.single_phase = 0
         self.right = True
         self.set_links()
+        self.old_y = 0
 
 
     def update(self, q):
         self.q = np.asarray([[i] for i in q ])
-        self.joints = dynamics.FK(self,self.fixed)
 
+        self.joints = dynamics.FK(self)
+        #print(self.fixed)
         self.check_phase()
-        if  self.right:
-            print "hello"
-            switch = np.array([ [0, 0, 0, 1, 0 ,0],
-                                 [0, 0, 1, 0, 0, 0],
-                                 [0, 1, 0, 0, 0, 0],
-                                 [1, 0, 0, 0, 0, 0],
-                                 [0, 0, 0, 0, 1, 0],
-                                 [0, 0, 0, 0, 0, 1]])
-            print self.q
-            self.q = switch.dot(self.q)
 
-
+        self.q = self.switch.dot(self.q)
 
 
     def check_phase(self):
-        temp =  self.joints[4][1].tolist()[0][0]
-        self.phase = temp < 0.001
-        print self.phase
+        y_5  = self.joints[4][1].tolist()[0][0]
+        x_5  = self.joints[4][0].tolist()[0][0]
+        x_0  = self.joints[0][0].tolist()[0][0]
 
-        self.right = (self.right and self.phase)
+        if not self.right:
+            y_5 = -y_5
+        print "y_5",y_5
+
+        if (y_5 <= 0.0 and self.old_y >= 0.0):
+            print "double"
+            self.single_phase = False
+            self.fixed = np.matrix([[x_5],[0]])
+            self.right = not self.right
+
+        else:
+            print "single"
+            self.single_phase = True
+
+        if not self.right:
+            self.switch = np.array([[0, 0, 0, 1, 0, 0],
+                                    [0, 0, 1, 0, 0, 0],
+                                    [0, 1, 0, 0, 0, 0],
+                                    [1, 0, 0, 0, 0, 0],
+                                    [0, 0, 0, 0, 1, 0],
+                                    [0, 0, 0, 0, 0, 1]])
+        else:
+            self.switch = np.array([[1, 0, 0, 0, 0, 0],
+                                    [0, 1, 0, 0, 0, 0],
+                                    [0, 0, 1, 0, 0, 0],
+                                    [0, 0, 0, 1, 0, 0],
+                                    [0, 0, 0, 0, 1, 0],
+                                    [0, 0, 0, 0, 0, 1]])
+
+        self.old_y = y_5
+
+
+        # print x
+        # self.phase = (y < 0 and self.old_y > y) and x > x2
+        # print self.phase
+        # if self.phase:
+        #
+        #     self.right = not self.right
+        #     self.fixed = np.matrix( [ [self.joints[4][0].tolist()[0][0]],[0]])
+        #
+        # self.old_y = y
+
 
 
     def set_links(self):
