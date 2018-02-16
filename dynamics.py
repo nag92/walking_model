@@ -303,6 +303,11 @@ def FK(sub):
             temp = P[2] + R * np.matrix( [ [0], [ 2 * l[i - 1] ]])
         P.append(temp)
 
+    P = [ temp.tolist() for  temp in P    ]
+
+    flatten = lambda l: [item for sublist in l for item in sublist]
+    P = [ flatten(temp) for temp in P]
+
     return P
 
 
