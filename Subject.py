@@ -1,6 +1,7 @@
 import numpy as np
 import dynamics
 
+
 class Subject():
 
     def __init__(self,mass=64,height=1.7):
@@ -17,11 +18,12 @@ class Subject():
         self.qd = np.array([0,0,0,0,0,0],dtype=float)
         self.tau = np.array([0,0,0,0,0,0],dtype=float)
 
-        self.joints = []
+
         self.fixed = np.matrix([[0],[0]])
         self.single_phase = 0
         self.right = True
         self.set_links()
+        self.joints = dynamics.FK(self)
         self.old_y = 0
 
 
@@ -36,15 +38,22 @@ class Subject():
 
 
     def check_phase(self):
-        y_5  = self.joints[4][1].tolist()[0][0]
-        x_5  = self.joints[4][0].tolist()[0][0]
-        x_0  = self.joints[0][0].tolist()[0][0]
 
-        if not self.right:
-            y_5 = -y_5
-        print "y_5",y_5
+        points = dynamics.FK(self)
+        x, y = zip(*points)
+        y_5  = y[4]
+        x_5  = x[4]
+        x_0  = x[0]
 
-        if (y_5 <= 0.0 and self.old_y >= 0.0):
+        if not  self.right:
+            y_5*=-1
+
+        print "sub"
+        print "x", x
+        print "y", y
+
+
+        if ( (y_5 <= 0.0 and self.old_y >= 0.0)  ):
             print "double"
             self.single_phase = False
             self.fixed = np.matrix([[x_5],[0]])
@@ -87,29 +96,28 @@ class Subject():
     def set_links(self):
 
         # feet
-        self._link_lengths[0] = 1#0.152*self._height
-        self._link_lengths[5] = 1#0.152 * self._height
-        self._link_masses[0] = 0.0143 * self._height
-        self._link_masses[5] = 0.0143 * self._height
+
+        self._link_masses[0] = 0.0143 * self._total_mass
+        self._link_masses[5] = 0.0143 * self._total_mass
 
         # shins
-        self._link_lengths[1] = 1#0.246 * self._height
-        self._link_lengths[4] = 1#0.246 * self._height
-        self._link_masses[1] = 0.0475 * self._height
-        self._link_masses[4] = 0.0475 * self._height
+        self._link_lengths[1] = 0.246 * self._height
+        self._link_lengths[5] = 0.246 * self._height
+        self._link_masses[1] = 0.0475 * self._total_mass
+        self._link_masses[4] = 0.0475 * self._total_mass
 
         # thighs
-        self._link_lengths[2] = 1#0.245 * self._height
-        self._link_lengths[3] = 1#0.245 * self._height
+        self._link_lengths[2] = 0.245 * self._height
+        self._link_lengths[3] = 0.245 * self._height
         self._link_masses[2] = 0.105 * self._total_mass
         self._link_masses[3] = 0.105 * self._total_mass
 
         # trunk
-        self._link_lengths[6] = 1#0.245 * self._height
+        self._link_lengths[6] = 0.245 * self._height
         self._link_masses[6] = 0.245 * self._height
 
-
-
+        self._link_lengths[0] = 0.152*self._height
+        self._link_lengths[3] = 0.152 * self._height
 
 
 
