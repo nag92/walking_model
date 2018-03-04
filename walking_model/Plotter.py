@@ -7,7 +7,9 @@ from math import pi
 import scipy.integrate as integrate
 import matplotlib.animation as animation
 import Subject
+
 plt.ion()
+
 class Plotter():
 
     def __init__(self):
@@ -34,6 +36,3 @@ class Plotter():
         self.fig.canvas.draw()
         self.fig.canvas.flush_events()
 
-
-        #
-        # pass

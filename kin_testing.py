@@ -1,13 +1,15 @@
 
-import sys
-sys.path.append('../')
+# import sys
+# sys.path.append('../')
 
-import Plotter
-import Subject
+from walking_model import Plotter
+from walking_model import Subject
+
 import csv
 import numpy as np
 import math
 import time
+
 plotter = Plotter.Plotter()
 sub = Subject.Subject()
 plotter.update(sub)
