@@ -12,7 +12,8 @@ import csv
 
 joint_angle = {}
 values  = []
-with open('test.csv') as csvDataFile:
+FILE_PATH = 'bin/test.csv'
+with open(FILE_PATH,'r') as csvDataFile:
     csvReader = csv.reader(csvDataFile)
     for row in csvReader:
         nums = row[1:]

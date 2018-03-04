@@ -14,7 +14,7 @@ plotter.update(sub)
 
 joint_angle = {}
 values  = []
-TEST_FILE = 'test.csv'
+TEST_FILE = 'bin/test.csv'
 # TEST_FILE = '../test.csv'
 with open(TEST_FILE) as csvDataFile:
     csvReader = csv.reader(csvDataFile)
