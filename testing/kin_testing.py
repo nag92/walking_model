@@ -1,4 +1,7 @@
 
+import sys
+sys.path.append('../')
+
 import Plotter
 import Subject
 import csv
@@ -11,7 +14,9 @@ plotter.update(sub)
 
 joint_angle = {}
 values  = []
-with open('/media/nathaniel/Data/Google Drive/Exoskeleton Directed Research/code/walking_model/testing/test.csv') as csvDataFile:
+TEST_FILE = 'test.csv'
+# TEST_FILE = '../test.csv'
+with open(TEST_FILE) as csvDataFile:
     csvReader = csv.reader(csvDataFile)
     for row in csvReader:
         nums = row[1:]
