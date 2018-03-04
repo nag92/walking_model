@@ -1,7 +1,7 @@
-
-# import sys
-# sys.path.append('../')
-
+#------------------------------------------------------------------------------------------#
+# This file reads angle data from test.csv and updates a subject model
+# Plotter is used to draw the model using matplotlib
+#------------------------------------------------------------------------------------------#
 from walking_model import Plotter
 from walking_model import Subject
 

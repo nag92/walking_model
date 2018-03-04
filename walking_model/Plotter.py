@@ -24,6 +24,9 @@ class Plotter():
 
 
     def update(self, sub):
+        '''
+            Update and draw the model
+        '''
         points = sub.joints
 
         #back = [ _.tolist() for _ in points[:-1]]

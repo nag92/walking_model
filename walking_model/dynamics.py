@@ -1,4 +1,6 @@
-
+#----------------------------------------------------------------------------------------#
+# This file contains functions to compute the dynamic model of the lower limb
+#----------------------------------------------------------------------------------------#
 
 import numpy as np
 from math import cos, sin
@@ -14,7 +16,9 @@ def getTau(sub,traj):
 
 
 def jacobain(sub):
-
+    ''' 
+      Compute the jacobian 
+    '''
     l = sub._link_lengths
     m = sub._link_masses
     q = sub.q
@@ -26,8 +30,9 @@ def jacobain(sub):
 
 
 def getM(sub):
-
-
+    '''
+        get MASS matrix
+    '''
     l = sub._link_lengths
     m = sub._link_masses
     q = sub.q
@@ -202,6 +207,9 @@ def getM(sub):
 
 
 def getC(sub):
+    '''
+        get Coriolis Matrix
+    '''
 
     l = sub._link_lengths
     m = sub._link_masses
@@ -265,6 +273,9 @@ def getC(sub):
     return C
 
 def getG(sub):
+    '''
+        get Gravity Matrix
+    '''
 
     l = sub._link_lengths
     m = sub._link_masses
@@ -283,7 +294,9 @@ def getG(sub):
 
 
 def FK(sub):
-
+    '''
+        Compute Forward Kinematics
+    '''
     q = sub.q
     l = sub._link_lengths
     P = []
