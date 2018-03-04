@@ -38,3 +38,7 @@ Directory structure
 
 ```
 
+walking_model description
+- Subject.py is a model class with all attributes of the lower exoskeleton
+- Plotter.py is a visualizer for the lower exoskeleton model
+- dynamics.py is a helper module to calculate the dynamic model

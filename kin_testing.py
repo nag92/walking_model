@@ -1,6 +1,7 @@
 #------------------------------------------------------------------------------------------#
 # This file reads angle data from test.csv and updates a subject model
 # Plotter is used to draw the model using matplotlib
+# Subject is a model class with all attributes of the lower exoskeleton 
 #------------------------------------------------------------------------------------------#
 from walking_model import Plotter
 from walking_model import Subject
