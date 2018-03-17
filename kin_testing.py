@@ -43,6 +43,7 @@ while(1):
 
         sub.update(angles)
         plotter.update(sub)
-        time.sleep(.5)
+        # time.sleep(.5)
+        time.sleep(.1)
 
     print sub.fixed

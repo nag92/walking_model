@@ -300,20 +300,30 @@ def FK(sub):
     q = sub.q
     l = sub._link_lengths
     P = []
+    # add (x_5,0)
     P.append(sub.fixed)
     Q = []
 
+    # for every angle
     for i in xrange(1,6):
-
+        # temperary x,y point holder
         temp = []
-        R = np.matrix([ [cos(q[i - 1]), -sin(q[i - 1])], [ sin(q[i - 1]), cos(q[i - 1] ) ] ] )
+        # Rotation matrix
+        R = np.matrix([ [cos(q[i - 1]), -sin(q[i - 1])], 
+                      [ sin(q[i - 1]), cos(q[i - 1] ) ] ] )
 
+        # Left knee, left hip
         if i == 1 or i == 2:
             temp = P[i - 1] + R * np.matrix( [ [0], [ 2 * l[i - 1] ]])
+        
+        # Right knee, Right hip
         elif i == 4 or i == 3:
             temp = P[ i - 1] + R * np.matrix( [ [0], [ -2 * l[i - 1] ]])
+        
         elif i == 5:
             temp = P[2] + R * np.matrix( [ [0], [ 2 * l[i - 1] ]])
+        
+        # print "points",temp
         P.append(temp)
 
     P = [ temp.tolist() for  temp in P    ]
