@@ -1,6 +1,6 @@
 import numpy as np
 import dynamics
-
+from walking_model.logger import * 
 
 class Subject():
 
@@ -46,10 +46,12 @@ class Subject():
         x, y = zip(*points)
         
         print "-"*80
-        for pt in points:
-            print "points:>>",pt
+        for idx,pt in enumerate(points):
+            # print "points:>>",pt
+            logging.info("point_{}: {}".format(idx,pt))
         print "-"*80
-        print "x_5:",x[4],"y_5:",y[4]
+        # print "x_5:",x[4],"y_5:",y[4]
+        logging.info("x_5:{} | y_5: {}".format(x[4],y[4]))
         print "-"*80
         
         # if not self.right:
@@ -66,16 +68,18 @@ class Subject():
         if not  self.right:
             y_5*=-1
 
-        print "sub"
-        print "x", x
-        print "y", y
+        # print "sub"
+        # print "x", x
+        # print "y", y
 
         # Zero crossing detector
         if ( (y_5 <= 0.0 and self.old_y >= 0.0)  ):
-            print "#"*80
-            print "PHASE CHANGED"
-            print "#"*80
-            print "double"
+            # print "#"*80
+            # print "PHASE CHANGED"
+            logging.warn("PHASE CHANGED")
+            logging.info("double support")
+            # print "#"*80
+            # print "double"
             self.single_phase = False
 
             self.fixed = np.matrix([[x_5],
@@ -85,8 +89,10 @@ class Subject():
             self.right = not self.right
 
         else:
-            print "single"
-            print "Right first:",self.right
+            # print "single"
+            # print "Right first:",self.right
+            logging.info("Single support")
+            logging.info("Right first:{}".format(self.right))
             self.single_phase = True
 
         # if not self.right:

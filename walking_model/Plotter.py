@@ -7,6 +7,8 @@ from math import pi
 import scipy.integrate as integrate
 import matplotlib.animation as animation
 import Subject
+from walking_model.logger import * 
+
 
 plt.ion()
 
@@ -34,6 +36,7 @@ class Plotter():
         #flat_back = [item for sublist in back for item in sublist]
         x,y =  zip(*points)
         # print "xlen:",len(x)
+        logging.info("xlen:{}".format(len(x)))
 
         hip_x = x[2]
         hip_y = y[2]
