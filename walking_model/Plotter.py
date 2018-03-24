@@ -35,8 +35,11 @@ class Plotter():
         x,y =  zip(*points)
         # print "xlen:",len(x)
 
+        hip_x = x[2]
+        hip_y = y[2]
+
         self.back_leg.set_ydata([ y[:-1] ])
-        self.back_leg.set_xdata([ x[:-1] ])
+        self.back_leg.set_xdata([ map(lambda p:p - hip_x,x[:-1]) ])
 
         # self.back_leg.set_ydata([ y[:] ])
         # self.back_leg.set_xdata([ x[:] ])
