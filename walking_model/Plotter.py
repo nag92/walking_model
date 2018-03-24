@@ -7,7 +7,7 @@ from math import pi
 import scipy.integrate as integrate
 import matplotlib.animation as animation
 import Subject
-from walking_model.logger import * 
+from walking_model.common import * 
 
 
 plt.ion()

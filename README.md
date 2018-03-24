@@ -1,18 +1,29 @@
 ## This is a README
 
-run this file for testing
+#### Edit config.json accroding to subject
+``` json
+{
+  "TEST_FILE": "bin/test.csv",
+  "SUBJECT": {
+    "MASS": 64,
+    "HEIGHT": 1.7
+  }
+}
 ```
+
+run this file for testing
+```shell
 	python stick_model.py
 ```
 
 run this file for kinematic model
-```
+```shell
 	python kin_testing.py
 ```
 
 Directory structure
 
-```
+```shell
 .
 ├── bin
 │   ├── test.csv
@@ -30,6 +41,7 @@ Directory structure
     ├── dynamics.py
     ├── __init__.py
     ├── Plotter.py
+    ├── common.py
     └── Subject.py
 
 ```
@@ -38,3 +50,4 @@ walking_model description
 - Subject.py is a model class with all attributes of the lower exoskeleton
 - Plotter.py is a visualizer for the lower exoskeleton model
 - dynamics.py is a helper module to calculate the dynamic model
+- common.py has all the required helper functions

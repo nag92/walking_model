@@ -7,7 +7,7 @@
 #------------------------------------------------------------------------------------------#
 from walking_model import Plotter
 from walking_model import Subject
-from walking_model.logger import * 
+from walking_model.common import * 
 
 import csv
 import numpy as np
@@ -19,42 +19,18 @@ import sys
 
 
 plotter = Plotter.Plotter()
-sub = Subject.Subject()
+sub = Subject.Subject(MASS,HEIGHT)
 plotter.update(sub)
 
-joint_angle = {}
-values  = []
-TEST_FILE = 'bin/test.csv'
-# TEST_FILE = '../test.csv'
-with open(TEST_FILE) as csvDataFile:
-    csvReader = csv.reader(csvDataFile)
-    for row in csvReader:
-        nums = row[1:]
-        for val in nums:
-            values.append(float(val))
-        joint_angle[row[0]] = values
-        values = []
-
-
+joint_angle = read_csv()
 steps =  len(joint_angle[joint_angle.keys()[1]])
-
-
-def signal_handler(signal, frame):
-        logging.info('Exitting cleanly')
-        sys.exit(0)
 
 signal.signal(signal.SIGINT, signal_handler)
 
 while(1):
     for i in xrange(steps):
         os.system('clear')
-        # print(joint_angle.keys())
-        # angles = np.array([-math.radians(joint_angle['Left.Knee.Angle'][i]),
-        #                     math.radians(joint_angle['Left.Hip.Angle'][i]),
-        #                     math.radians(joint_angle['Right.Hip.Angle'][i]),
-        #                    -math.radians(joint_angle['Right.Knee.Angle'][i]),
-        #                     0,
-        #                     0], dtype=float)
+        banner()
         angles = np.array([-math.radians(joint_angle['Left.Knee.Angle'][i]),
                             math.radians(joint_angle['Left.Hip.Angle'][i]),
                             math.radians(joint_angle['Right.Hip.Angle'][i]),

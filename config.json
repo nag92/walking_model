@@ -1,0 +1,7 @@
+{
+  "TEST_FILE": "bin/test.csv",
+  "SUBJECT": {
+    "MASS": 64,
+    "HEIGHT": 1.7
+  }
+}

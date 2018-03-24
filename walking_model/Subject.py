@@ -1,6 +1,6 @@
 import numpy as np
 import dynamics
-from walking_model.logger import * 
+from walking_model.common import * 
 
 class Subject():
 
@@ -51,33 +51,24 @@ class Subject():
             logging.info("point_{}: {}".format(idx,pt))
         print "-"*80
         # print "x_5:",x[4],"y_5:",y[4]
-        logging.info("x_5:{} | y_5: {}".format(x[4],y[4]))
+        logging.info("point_fixed: {}".format([x[4],y[4]]))
         print "-"*80
         
-        # if not self.right:
-        #     x=[x[len(x)-1-i] for i in range(len(x))]
-        #     y=[y[len(y)-1-i] for i in range(len(y))]
-
-        # y_5  = y[4]
-        # x_5  = x[4]
 
         x_5  = x[4]
         y_5  = y[4]
-        # x_0  = x[0]
 
         if not  self.right:
             y_5*=-1
 
-        # print "sub"
-        # print "x", x
-        # print "y", y
 
         # Zero crossing detector
         if ( (y_5 <= 0.0 and self.old_y >= 0.0)  ):
-            # print "#"*80
-            # print "PHASE CHANGED"
-            logging.warn("PHASE CHANGED")
-            logging.info("double support")
+            
+            increment_gate_count()
+
+            logging.warn(WARNING+"PHASE CHANGED"+ENDC)
+            logging.info("Double support")
             # print "#"*80
             # print "double"
             self.single_phase = False
@@ -92,37 +83,13 @@ class Subject():
             # print "single"
             # print "Right first:",self.right
             logging.info("Single support")
-            logging.info("Right first:{}".format(self.right))
+            logging.info("Right leg forward:{}".format(
+                OKGREEN+"{}".format(self.right) if self.right else FAIL+"{}".format(self.right))+ENDC)
             self.single_phase = True
-
-        # if not self.right:
-        #     self.switch = np.array([[0, 0, 0, 1, 0, 0],
-        #                             [0, 0, 1, 0, 0, 0],
-        #                             [0, 1, 0, 0, 0, 0],
-        #                             [1, 0, 0, 0, 0, 0],
-        #                             [0, 0, 0, 0, 1, 0],
-        #                             [0, 0, 0, 0, 0, 1]])
-        # else:
-        #     self.switch = np.array([[1, 0, 0, 0, 0, 0],
-        #                             [0, 1, 0, 0, 0, 0],
-        #                             [0, 0, 1, 0, 0, 0],
-        #                             [0, 0, 0, 1, 0, 0],
-        #                             [0, 0, 0, 0, 1, 0],
-        #                             [0, 0, 0, 0, 0, 1]])
-        # self.switch_gate()
 
         self.old_y = y_5
 
 
-        # print x
-        # self.phase = (y < 0 and self.old_y > y) and x > x2
-        # print self.phase
-        # if self.phase:
-        #
-        #     self.right = not self.right
-        #     self.fixed = np.matrix( [ [self.joints[4][0].tolist()[0][0]],[0]])
-        #
-        # self.old_y = y
 
     def switch_gate(self):
         if not self.right:
