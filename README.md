@@ -5,7 +5,7 @@ run this file for testing
 	python stick_model.py
 ```
 
-run this file for dynamic model
+run this file for kinematic model
 ```
 	python kin_testing.py
 ```
@@ -28,13 +28,9 @@ Directory structure
 │   └── get_meta_data.py
 └── walking_model
     ├── dynamics.py
-    ├── dynamics.pyc
     ├── __init__.py
-    ├── __init__.pyc
     ├── Plotter.py
-    ├── Plotter.pyc
-    ├── Subject.py
-    └── Subject.pyc
+    └── Subject.py
 
 ```
 
