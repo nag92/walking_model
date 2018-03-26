@@ -1,9 +1,9 @@
 ## Walking model for Lower Limb Exoskeleton 
 
-[Image_1](./doc/figure_1.png)
-[Image_2](./doc/figure_1-1.png)
-[Image_3](./doc/figure_1-2.png)
-[Image_4](./doc/figure_1-3.png)
+![Image_1](doc/figure_1.png)
+![Image_2](doc/figure_1-1.png)
+![Image_3](doc/figure_1-2.png)
+![Image_4](doc/figure_1-3.png)
 
 #### Edit config.json accroding to subject
 ``` json
