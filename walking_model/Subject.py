@@ -14,10 +14,16 @@ class Subject():
         self._height = height
         self._link_lengths = np.array([0,0,0,0,0,0,0],dtype=float)
         self._link_masses = np.array([0,0,0,0,0,0,0],dtype=float)
+        
         self.q = np.array([[0],[0],[0],[0],[0],[0]],dtype=float)
         self.qd = np.array([0,0,0,0,0,0],dtype=float)
-        self.tau = np.array([0,0,0,0,0,0],dtype=float)
+        self.qdd = np.array([0,0,0,0,0,0],dtype=float)
 
+        self.q_old = self.q
+        self.qd_old = self.q
+        
+        self.tau = np.array([0,0,0,0,0,0],dtype=float)
+        
 
         self.fixed = np.matrix([[0],[0]])
         self.single_phase = 0
@@ -37,6 +43,31 @@ class Subject():
         self.switch_gate()
         self.q = self.switch.dot(self.q)
         self.joints = dynamics.FK(self)
+
+        # compute torque
+
+        self.get_torques()
+
+        self.q_old = self.q
+        self.qd_old = self.qd
+
+
+    def get_torques(self):
+        M = dynamics.getM(self)
+        C = dynamics.getC(self)
+        G = dynamics.getG(self)
+        
+        self.qd = self.q_old - self.q
+        self.qdd = self.qd_old - self.qd
+        
+        self.tau = M*self.qdd+C.T+G.T
+
+        print("shape M", M.shape)
+        print("shape C", C.shape)
+        print("shape G", G.shape)
+
+        print("shape qd", self.qd.shape)
+        print("shape qdd", self.qdd.shape)
 
     def check_phase(self):
 

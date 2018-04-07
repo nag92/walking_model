@@ -50,6 +50,12 @@ class Plotter():
             # self.ax.text(x[idx]-x[2], y[idx], str(idx))
                     
 
+        print "-"*80
+        # for idx,tau in enumerate(sub.tau):
+            # logging.info("tau_{0}: [{2}] {1}".format(idx,tau,JOINT_sequence[str(idx)]))        
+
+        print(sub.tau)
+        print(sub.tau.shape)
         #back = [ _.tolist() for _ in points[:-1]]
         #flat_back = [item for sublist in back for item in sublist]
         # print "xlen:",len(x)
@@ -58,12 +64,50 @@ class Plotter():
         hip_x = x[2]
         hip_y = y[2]
 
-        self.back_leg.set_ydata([ y[:-1] ])
-        self.back_leg.set_xdata([ map(lambda p:p - hip_x,x[:-1]) ])
+        Y_data = y[:-1]
+        X_data = map(lambda p:p - hip_x,x[:-1])
+
+        # X_data,Y_data = self.get_feet(X_data, Y_data, sub)
+
+        self.back_leg.set_ydata([ Y_data ])
+        self.back_leg.set_xdata([ X_data ])
 
         # self.front_leg.set_ydata([ y[:] ])
         # self.front_leg.set_xdata([ x[:] ])
 
         self.fig.canvas.draw()
         self.fig.canvas.flush_events()
+
+    def get_feet(self,X_data,Y_data,sub):
+        left_ankle_angle = np.pi - sub.q[4]
+        right_ankle_angle = np.pi -  sub.q[5]
+
+        left_ankle_pt = (X_data[0],Y_data[0])
+        right_ankle_pt = (X_data[0],Y_data[0])
+
+        l = 0.1*sub._height
+
+        temp = l/np.sqrt(1 + np.square(np.tan(left_ankle_angle)))
+        
+        toe_left_x = left_ankle_pt[0] + temp
+        toe_left_y = left_ankle_pt[1] + np.tan(left_ankle_angle)*temp
+
+        temp = l/np.sqrt(1 + np.square(np.tan(right_ankle_angle)))
+        toe_right_x = right_ankle_pt[0] + temp
+        toe_right_y = right_ankle_pt[1] + np.tan(right_ankle_angle)*temp
+
+
+        new_X_data = [toe_left_x]
+        for x in X_data:
+            new_X_data.append(x)
+        new_X_data.append(toe_right_x)
+
+        new_Y_data = [toe_left_y]
+        for y in Y_data:
+            new_Y_data.append(y)
+        new_Y_data.append(toe_right_y)
+
+        return new_X_data,new_Y_data
+
+
 
