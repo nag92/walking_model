@@ -38,21 +38,11 @@ class Subject():
         self.q = self.switch.dot(self.q)
         self.joints = dynamics.FK(self)
 
-
     def check_phase(self):
 
         # points = dynamics.FK(self)
         points = self.joints
         x, y = zip(*points)
-        
-        print "-"*80
-        for idx,pt in enumerate(points):
-            # print "points:>>",pt
-            logging.info("point_{}: {}".format(idx,pt))
-        print "-"*80
-        # print "x_5:",x[4],"y_5:",y[4]
-        logging.info("point_fixed: {}".format([x[4],y[4]]))
-        print "-"*80
         
 
         x_5  = x[4]

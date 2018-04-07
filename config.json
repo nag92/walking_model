@@ -2,6 +2,14 @@
   "TEST_FILE": "bin/test.csv",
   "SUBJECT": {
     "MASS": 64,
-    "HEIGHT": 1.7
+    "HEIGHT": 1.7,
+    "JOINT_sequence": {
+      "0":"Left.Knee.Angle",
+      "1":"Left.Hip.Angle",
+      "2":"Right.Hip.Angle",
+      "3":"Right.Knee.Angle",
+      "4":"Right.Ankle.Angle",
+      "5":"Left.Ankle.Angle"
+    }
   }
 }
