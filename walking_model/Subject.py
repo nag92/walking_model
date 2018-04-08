@@ -60,14 +60,15 @@ class Subject():
         self.qd = self.q_old - self.q
         self.qdd = self.qd_old - self.qd
         
-        self.tau = M*self.qdd+C.T+G.T
+        self.tau = M*self.qdd+C+G.T
 
-        print("shape M", M.shape)
-        print("shape C", C.shape)
-        print("shape G", G.shape)
+        # print("shape M", M.shape)
+        # print("shape C", C.shape)
+        # print("shape G", G.shape)
 
-        print("shape qd", self.qd.shape)
-        print("shape qdd", self.qdd.shape)
+        # print("shape qd", self.qd.shape)
+        # print("shape qdd", self.qdd.shape)
+
 
     def check_phase(self):
 
@@ -86,7 +87,7 @@ class Subject():
         # Zero crossing detector
         if ( (y_5 <= 0.0 and self.old_y >= 0.0)  ):
             
-            increment_gate_count()
+            increment_gait_count()
 
             logging.warn(WARNING+"PHASE CHANGED"+ENDC)
             logging.info("Double support")

@@ -24,12 +24,12 @@ ENDC = '\033[0m'
 BOLD = '\033[1m'
 UNDERLINE = '\033[4m'
 
-global COMPLETED_GATE 
-COMPLETED_GATE = 0
+global COMPLETED_GAIT 
+COMPLETED_GAIT = 0
 
-def increment_gate_count():
-	global COMPLETED_GATE 
-	COMPLETED_GATE+=1
+def increment_gait_count():
+	global COMPLETED_GAIT 
+	COMPLETED_GAIT+=1
 
 
 def read_csv():
@@ -49,7 +49,7 @@ def banner():
 	print "-"*80
 	print "\t "+BOLD+"WALKING MODEL"+ENDC
 	print "-"*80
-	logging.info(OKGREEN+"COMPLETED_GATE:{}".format(COMPLETED_GATE/2)+ENDC)
+	logging.info(OKGREEN+"COMPLETED_GAIT:{}".format(COMPLETED_GAIT/2)+ENDC)
 
 def signal_handler(signal, frame):
         logging.info('Exitting cleanly')

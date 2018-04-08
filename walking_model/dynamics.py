@@ -267,9 +267,12 @@ def getC(sub):
         12 * l[1] * l[4] * m[6] * qd[1] ** 2 * cos(q[1]) * sin(q[4]) + 12 * l[1] * l[4] * m[6] * qd[1] ** 2 * cos(q[4]) * sin(q[1])
 
 
-    C6 = 0
+    C6=np.array([0])
+    # print("C5",C5)
+    # print("C6",C6)
 
     C = np.matrix([C1, C2, C3, C4, C5, C6])
+    # print('Coriolis:',C)
     return C
 
 def getG(sub):
