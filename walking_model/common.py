@@ -33,46 +33,10 @@ COMPLETED_GAIT = 0
 
 CALIBRATION = CONFIG_FILE["SUBJECT"]["CALIBRATION"]
 
-# CALIBRATION={
-#                 'Left.Knee.Angle':{
-#                                     'index':6,
-#                                     'multiplier':1,
-#                                     'offset':180
-#                                     },
-#                 'Left.Hip.Angle':{
-#                                     'index':5,
-#                                     'multiplier':1,
-#                                     'offset':0
-#                                     },
-#                 'Right.Hip.Angle':{
-#                                     'index':1,
-#                                     'multiplier':-1,
-#                                     'offset':0
-#                                     },
-#                 'Right.Knee.Angle':{
-#                                     'index':20,
-#                                     'multiplier':1,
-#                                     'offset':0
-#                                     },
-#                 'Right.Ankle.Angle':{
-#                                     'index':16,
-#                                     'multiplier':1,
-#                                     'offset':-100
-#                                     },
-#                 'Left.Ankle.Angle':{
-#                                     'index':13,
-#                                     'multiplier':-1,
-#                                     'offset':-90
-#                                     } 
-#             }
-
-DUMMY_TEST_FILE = '/home/ameya/Documents/test01.csv'
-
-parse_csv = lambda row,idx: CALIBRATION[idx]['multiplier']*float(row[CALIBRATION[idx]['index']])+CALIBRATION[idx]['offset']  
 
 def increment_gait_count():
-	global COMPLETED_GAIT 
-	COMPLETED_GAIT+=1
+    global COMPLETED_GAIT 
+    COMPLETED_GAIT+=1
 
 
 def read_csv():
@@ -91,6 +55,7 @@ def read_csv():
 
 
 def read_csv2():
+    parse_csv = lambda row,idx: CALIBRATION[idx]['multiplier']*float(row[CALIBRATION[idx]['index']])+CALIBRATION[idx]['offset']  
     joint_angle = {
                     'Left.Knee.Angle':[],
                     'Left.Hip.Angle':[],
@@ -100,17 +65,14 @@ def read_csv2():
                     'Left.Ankle.Angle':[]
                     }
 
-    values  = []
     indx_cnt = 0
     with open(TEST_FILE) as csvDataFile:
         csvReader = csv.reader(csvDataFile)
         for row in csvReader:
             if indx_cnt > 5:
                 # print row
-                # print('samples',len(row))
                 try:
                     for _key in joint_angle.keys():
-                        # joint_angle[_key].append(float(row[FILE_INDICES[_key]['index']]))
                         joint_angle[_key].append(parse_csv(row,_key))
                 except:
                     pass
@@ -129,7 +91,9 @@ def banner():
 	logging.info(OKGREEN+"COMPLETED_GAIT:{}".format(COMPLETED_GAIT/2)+ENDC)
 
 def signal_handler(signal, frame):
-        logging.info('Exitting cleanly')
-        sys.exit(0)
-        exit()
+    close_all()    
 
+def close_all():
+    logging.info('Exitting cleanly')
+    sys.exit(0)
+    exit()
