@@ -22,7 +22,10 @@ plotter = Plotter.Plotter()
 sub = Subject.Subject(MASS,HEIGHT)
 plotter.update(sub)
 
-joint_angle = read_csv()
+if CONFIG_FILE["NEW_FORMAT"]:
+    joint_angle = read_csv2()
+else:
+    joint_angle = read_csv()
 steps =  len(joint_angle[joint_angle.keys()[1]])
 
 signal.signal(signal.SIGINT, signal_handler)
@@ -46,4 +49,4 @@ while(1):
 
     print sub.fixed
 
-    # break
+    break
