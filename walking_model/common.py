@@ -102,11 +102,12 @@ def read_csv2():
 
     values  = []
     indx_cnt = 0
-    with open(DUMMY_TEST_FILE) as csvDataFile:
+    with open(TEST_FILE) as csvDataFile:
         csvReader = csv.reader(csvDataFile)
         for row in csvReader:
             if indx_cnt > 5:
                 # print row
+                # print('samples',len(row))
                 try:
                     for _key in joint_angle.keys():
                         # joint_angle[_key].append(float(row[FILE_INDICES[_key]['index']]))
