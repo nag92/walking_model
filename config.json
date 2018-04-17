@@ -19,14 +19,14 @@
                                     "offset":180
                                     },
                 "Left.Hip.Angle":{
-                                    "index":4,
+                                    "index":5,
                                     "multiplier":1,
-                                    "offset":0
+                                    "offset":100
                                     },
                 "Right.Hip.Angle":{
-                                    "index":19,
-                                    "multiplier":-1,
-                                    "offset":0
+                                    "index":20,
+                                    "multiplier":1,
+                                    "offset":-90
                                     },
                 "Right.Knee.Angle":{
                                     "index":15,
@@ -34,14 +34,14 @@
                                     "offset":0
                                     },
                 "Right.Ankle.Angle":{
-                                    "index":12,
+                                    "index":14,
                                     "multiplier":1,
-                                    "offset":-100
+                                    "offset":-105
                                     },
                 "Left.Ankle.Angle":{
-                                    "index":10,
-                                    "multiplier":-1,
-                                    "offset":-90
+                                    "index":9,
+                                    "multiplier":1,
+                                    "offset":-80
                                     } 
             }
   }
