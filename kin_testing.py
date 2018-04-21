@@ -16,7 +16,12 @@ import time
 import os
 import signal
 import sys
+import serial
 
+PORT = '/dev/ttyACM0'
+BAUDRATE = 250000
+
+USE_SERIAL = False
 
 plotter = Plotter.Plotter()
 sub = Subject.Subject(MASS,HEIGHT)
@@ -30,27 +35,54 @@ steps =  len(joint_angle[joint_angle.keys()[1]])
 
 # signal.signal(signal.SIGINT, signal_handler)
 
-while(1):
-    try:
-        for i in xrange(steps):
+if not USE_SERIAL:
+    while(1):
+        try:
+            for i in xrange(steps):
+                os.system('clear')
+                banner()
+                angles = np.array([-math.radians(joint_angle['Left.Knee.Angle'][i]),
+                                    math.radians(joint_angle['Left.Hip.Angle'][i]),
+                                    math.radians(joint_angle['Right.Hip.Angle'][i]),
+                                   -math.radians(joint_angle['Right.Knee.Angle'][i]),
+                                    
+                                    math.radians(joint_angle['Right.Ankle.Angle'][i]),
+                                    math.radians(joint_angle['Left.Ankle.Angle'][i])], dtype=float)
+
+                sub.update(angles)
+                plotter.update(sub)
+                # time.sleep(.5)
+                # time.sleep(.005)
+
+            print sub.fixed
+
+            # break
+        except KeyboardInterrupt:
+            print('KeyboardInterrupt')
+            close_all()
+else:
+    print("using serial")
+    with serial.Serial(PORT, BAUDRATE, timeout=1) as ser:
+        print("reading...")
+        
+        while True:
             os.system('clear')
-            banner()
-            angles = np.array([-math.radians(joint_angle['Left.Knee.Angle'][i]),
-                                math.radians(joint_angle['Left.Hip.Angle'][i]),
-                                math.radians(joint_angle['Right.Hip.Angle'][i]),
-                               -math.radians(joint_angle['Right.Knee.Angle'][i]),
-                                
-                                math.radians(joint_angle['Right.Ankle.Angle'][i]),
-                                math.radians(joint_angle['Left.Ankle.Angle'][i])], dtype=float)
+            try:
+                line = ser.readline()   # read a '\n' terminated line
+                data = [float(every_data) for every_data in line.split(',')[:-1]]
+                print(data)
+                banner()
+                angles = np.array([-math.radians(data[CALIBRATION['Left.Knee.Angle']['index']]),
+                                    math.radians(data[CALIBRATION['Left.Hip.Angle']['index']]),
+                                    math.radians(data[CALIBRATION['Right.Hip.Angle']['index']]),
+                                   -math.radians(data[CALIBRATION['Right.Knee.Angle']['index']]),
+                                    
+                                    math.radians(data[CALIBRATION['Right.Ankle.Angle']['index']]),
+                                    math.radians(data[CALIBRATION['Left.Ankle.Angle']['index']])], dtype=float)
+                print(angles)
+                sub.update(angles)
+                plotter.update(sub)
+            except:
+                pass
 
-            sub.update(angles)
-            plotter.update(sub)
-            # time.sleep(.5)
-            time.sleep(.05)
-
-        print sub.fixed
-
-        break
-    except KeyboardInterrupt:
-        print('KeyboardInterrupt')
-        close_all()
+        

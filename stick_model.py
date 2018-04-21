@@ -1,3 +1,6 @@
+
+#! /usr/bin/python
+
 # Double pendulum formula translated from the C code at
 # http://www.physics.usyd.edu.au/~wheat/dpend_html/solve_dpend.c
 
