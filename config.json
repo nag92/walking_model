@@ -1,5 +1,5 @@
 {
-  "TEST_FILE": "bin/gait_02.csv",
+  "TEST_FILE": "bin/test01.csv",
   "NEW_FORMAT": true,
   "SUBJECT": {
     "MASS": 64,
@@ -14,34 +14,34 @@
                       },
     "CALIBRATION":{
                 "Left.Knee.Angle":{
-                                    "index":2,
+                                    "index":8,
                                     "multiplier":1,
-                                    "offset":0
+                                    "offset":180
                                     },
                 "Left.Hip.Angle":{
-                                    "index":1,
+                                    "index":5,
                                     "multiplier":1,
-                                    "offset":0
+                                    "offset":100
                                     },
                 "Right.Hip.Angle":{
-                                    "index":6,
+                                    "index":20,
                                     "multiplier":1,
-                                    "offset":0
+                                    "offset":-90
                                     },
                 "Right.Knee.Angle":{
-                                    "index":5,
+                                    "index":15,
                                     "multiplier":1,
                                     "offset":0
                                     },
                 "Right.Ankle.Angle":{
-                                    "index":4,
+                                    "index":14,
                                     "multiplier":1,
-                                    "offset":0
+                                    "offset":-105
                                     },
                 "Left.Ankle.Angle":{
-                                    "index":3,
+                                    "index":9,
                                     "multiplier":1,
-                                    "offset":0
+                                    "offset":-80
                                     } 
             }
   }
