@@ -33,10 +33,9 @@ else:
     joint_angle = read_csv()
 steps =  len(joint_angle[joint_angle.keys()[1]])
 
-# signal.signal(signal.SIGINT, signal_handler)
-
+kg = KillGracefully()
 if not USE_SERIAL:
-    while(1):
+    while(not kg.KILL_FLAG):
         try:
             for i in xrange(steps):
                 os.system('clear')
@@ -56,7 +55,6 @@ if not USE_SERIAL:
 
             print sub.fixed
 
-            # break
         except KeyboardInterrupt:
             print('KeyboardInterrupt')
             close_all()

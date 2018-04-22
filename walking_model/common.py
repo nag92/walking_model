@@ -4,6 +4,7 @@ import csv
 import json
 import time
 import pprint
+import signal
 
 
 pp = pprint.PrettyPrinter(indent=4)
@@ -32,6 +33,7 @@ global COMPLETED_GAIT
 COMPLETED_GAIT = 0
 
 CALIBRATION = CONFIG_FILE["SUBJECT"]["CALIBRATION"]
+
 
 
 def increment_gait_count():
@@ -90,7 +92,23 @@ def banner():
 	print "-"*80
 	logging.info(OKGREEN+"COMPLETED_GAIT:{}".format(COMPLETED_GAIT/2)+ENDC)
 
+
+class KillGracefully:
+    def __init__(self):
+        self.KILL_FLAG = False
+        signal.signal(signal.SIGINT, self.signal_handler)
+        # signal.signal(signal.SIGTSTP, self.signal_handler)
+
+    def signal_handler(self,signal, frame):
+        self.KILL_FLAG = True
+        print('#'*80)
+        close_all() 
+
+
+
 def signal_handler(signal, frame):
+    KILL_FLAG = True
+    print('#'*80)
     close_all()    
 
 def close_all():
