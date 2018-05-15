@@ -1,0 +1,48 @@
+{
+  "TEST_FILE": "bin/test01.csv",
+  "NEW_FORMAT": true,
+  "SUBJECT": {
+    "MASS": 64,
+    "HEIGHT": 1.7,
+    "JOINT_sequence": {
+                      "0":"Left.Knee.Angle",
+                      "1":"Left.Hip.Angle",
+                      "2":"Right.Hip.Angle",
+                      "3":"Right.Knee.Angle",
+                      "4":"Right.Ankle.Angle",
+                      "5":"Left.Ankle.Angle"
+                      },
+    "CALIBRATION":{
+                "Left.Knee.Angle":{
+                                    "index":8,
+                                    "multiplier":1,
+                                    "offset":180
+                                    },
+                "Left.Hip.Angle":{
+                                    "index":5,
+                                    "multiplier":1,
+                                    "offset":100
+                                    },
+                "Right.Hip.Angle":{
+                                    "index":20,
+                                    "multiplier":1,
+                                    "offset":-90
+                                    },
+                "Right.Knee.Angle":{
+                                    "index":15,
+                                    "multiplier":1,
+                                    "offset":0
+                                    },
+                "Right.Ankle.Angle":{
+                                    "index":14,
+                                    "multiplier":1,
+                                    "offset":-105
+                                    },
+                "Left.Ankle.Angle":{
+                                    "index":9,
+                                    "multiplier":1,
+                                    "offset":-80
+                                    } 
+            }
+  }
+}
